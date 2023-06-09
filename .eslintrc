@@ -1,0 +1,45 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "airbnb-base",
+        "airbnb-typescript/base",
+        "prettier"
+    ],
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "overrides": [
+        {
+            "files": ["*.yaml", "*.yml"],
+            "plugins": ["yaml"],
+            "extends": ["plugin:yaml/recommended"]
+        }
+    ],
+    "rules": {
+        "@typescript-eslint/lines-between-class-members": [
+            2,
+            "always",
+            {
+                "exceptAfterSingleLine": true,
+                "exceptAfterOverload": true
+            }
+        ],
+        "@typescript-eslint/padding-line-between-statements": [
+            "error",
+            {
+                "blankLine": "always",
+                "prev": "export",
+                "next": "export"
+            }
+        ],
+        "import/order": [1, { "newlines-between": "never" }],
+        "import/prefer-default-export": 0,
+        "import/no-default-export": 2,
+        "import/no-extraneous-dependencies": [2, { "devDependencies": ["./*.cjs", "./**/*.test.ts", "./**/*.spec.ts"] }]
+    }
+}

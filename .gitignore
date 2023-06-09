@@ -1,0 +1,43 @@
+# Based on: https://github.com/microsoft/TypeScript-Node-Starter/blob/master/.gitignore
+
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.swp
+
+pids
+logs
+results
+reports
+assets
+tmp
+
+# Build
+lib
+
+# Test
+coverage
+test
+
+# API keys and secrets
+.env
+
+# Dependency directory
+node_modules
+
+# Editors
+.idea
+.vscode
+.history
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Format and lint
+.eslintcache

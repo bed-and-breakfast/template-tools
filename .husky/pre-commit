@@ -1,0 +1,10 @@
+# npx check-all-markdown --no-check-links &&
+npx markdown-doctest &&
+git add README.md &&
+
+npx format-package -w &&
+git add package.json &&
+
+npx lint-staged &&
+
+npx jest --coverage --coverageThreshold='{"global":{"lines":"0"}}'

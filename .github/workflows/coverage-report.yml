@@ -1,0 +1,28 @@
+name: Coverage Report
+on:
+    workflow_run:
+        workflows:
+            - CI
+        types:
+            - completed
+jobs:
+    report:
+        name: Coverage Report
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get coverage artifacts
+              uses: dawidd6/action-download-artifact@v2
+              with:
+                  workflow: ci.yml
+                  name: test-coverage
+                  path: coverage
+                  run_id: ${{ github.event.workflow_run.id }}
+            - name: Create coverage report
+              uses: 5monkeys/cobertura-action@master
+              with:
+                  report_name: Coverage Report
+                  path: 'coverage/*.xml'
+                  minimum_coverage: 100
+                  fail_below_threshold: true
+                  skip_covered: false
+                  only_changed_files: false

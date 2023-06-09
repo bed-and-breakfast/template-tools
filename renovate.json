@@ -1,0 +1,12 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["config:js-lib"],
+    "timezone": "America/Edmonton",
+    "schedule": ["after 4am", "before 7am"],
+    "hostRules": [
+        {
+            "matchHost": "api.github.com",
+            "concurrentRequestLimit": 100
+        }
+    ]
+}
