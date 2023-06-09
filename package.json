@@ -34,8 +34,8 @@
     "scripts": {
         "build": "rimraf lib && tsc && tsc -p tsconfig.cjs.json",
         "commit": "git-cz",
-        "format": "prettier \"**/*.+(js|ts|json)\" --check",
-        "format:fix": "prettier \"**/*.+(js|ts|json)\" --write",
+        "format": "prettier \"**/*.+(js|ts|json|yml|yaml)\" --check",
+        "format:fix": "prettier \"**/*.+(js|ts|json|yml|yaml)\" --write",
         "format:package": "format-package -w",
         "init": "node lib/cjs/init/index.js",
         "lint": "eslint . --ext .ts,.js,.yml,.yaml",
