@@ -4,6 +4,7 @@ import { spawnSync } from 'child_process';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 import validate from 'validate-npm-package-name';
+import { dump, load } from 'js-yaml';
 
 export type Answers = {
     package: { name: string; description: string; author: string; keywords: string };
@@ -189,15 +190,32 @@ export const questionUser = () =>
         },
     ]);
 
+export const replaceCodeClimateId = () => {
+    const ciWorkflow = load(readFileSync('.github/workflows/ci.yml').toString()) as {
+        jobs: { test: { steps: { uses: string; env: { CC_TEST_REPORTER_ID: string } }[] } };
+    };
+
+    const codeClimateStep = ciWorkflow.jobs.test.steps.find(
+        (step) => step.uses && step.uses.indexOf('paambaati/codeclimate-action') === 0
+    );
+
+    if (codeClimateStep) {
+        codeClimateStep.env.CC_TEST_REPORTER_ID = 'TESTY';
+    }
+
+    writeFileSync('.github/workflows/ci.yml', dump(ciWorkflow));
+
+    spawnSync('eslint', ['.github/workflows/ci.yml', '--fix']);
+};
+
 export const initRepository = () => {
     questionUser().then((answers) => {
         // eslint-disable-next-line no-param-reassign
         answers = processAnswers(answers);
 
         writePackageJson(answers);
-
         writeReadme(answers);
-
+        replaceCodeClimateId();
         removeChangelog();
 
         if (answers.initialCommit) {

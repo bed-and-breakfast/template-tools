@@ -1,8 +1,8 @@
 import { existsSync, rmSync } from 'fs';
-import { removeChangelog } from './init-repository';
+import { removeChangelog, replaceCodeClimateId } from './init-repository';
 import mocked = jest.mocked;
 
-jest.mock('fs');
+// jest.mock('fs');
 jest.mock('child_process');
 
 // const answers: Answers = {
@@ -17,6 +17,12 @@ jest.mock('child_process');
 //     initialCommit: false,
 //     packageKeywordsBedBreakfast: false,
 // };
+
+describe.only(replaceCodeClimateId.name, () => {
+    it('Should remove changelog when CHANGELOG.md exists', async () => {
+        replaceCodeClimateId();
+    });
+});
 
 describe(removeChangelog.name, () => {
     it('Should remove changelog when CHANGELOG.md exists', async () => {
