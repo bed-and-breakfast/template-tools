@@ -70,6 +70,15 @@ export const removeChangelog = () => {
 };
 
 export const initialCommit = (answers: Answers) => {
+    const logError = (stderr: Buffer) => {
+        if (stderr) {
+            // eslint-disable-next-line no-console
+            console.error(chalk.red(Error(stderr.toString()).toString()));
+
+            process.exitCode = 1;
+        }
+    };
+
     if (answers.initialCommit) {
         spawnSync('git', ['add', 'package.json']);
 
@@ -77,14 +86,13 @@ export const initialCommit = (answers: Answers) => {
 
         spawnSync('git', ['add', 'CHANGELOG.md']);
 
-        const spawn = spawnSync('git', ['commit', '-am', '"feat: create initial commit"'], { shell: true });
+        const commit = spawnSync('git', ['commit', '-am', '"feat: create initial commit"'], { shell: true });
 
-        if (spawn.stderr) {
-            // eslint-disable-next-line no-console
-            console.error(chalk.red(Error(spawn.stderr.toString()).toString()));
+        logError(commit.stderr);
 
-            process.exitCode = 1;
-        }
+        const push = spawnSync('git', ['push']);
+
+        logError(push.stderr);
     }
 };
 
