@@ -114,32 +114,8 @@
             "@semantic-release/release-notes-generator",
             "@semantic-release/changelog",
             "@semantic-release/npm",
-            [
-                "@semantic-release/github",
-                {
-                    "assets": [
-                        "package.json",
-                        "README.md",
-                        "CHANGELOG.md",
-                        "lib",
-                        "src",
-                        "cli.js"
-                    ]
-                }
-            ],
-            [
-                "@semantic-release/git",
-                {
-                    "assets": [
-                        "package.json",
-                        "README.md",
-                        "CHANGELOG.md",
-                        "lib",
-                        "src",
-                        "cli.js"
-                    ]
-                }
-            ]
+            "@semantic-release/githb",
+            "@semantic-release/git"
         ],
         "branches": "main"
     },
