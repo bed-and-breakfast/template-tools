@@ -136,6 +136,7 @@
         "@commitlint/cli": "17.6.5",
         "@commitlint/config-conventional": "17.6.5",
         "@semantic-release/changelog": "6.0.3",
+        "@semantic-release/exec": "github:semantic-release/exec",
         "@semantic-release/git": "10.0.1",
         "@types/inquirer": "8.2.6",
         "@types/jest": "29.5.2",
