@@ -42,7 +42,6 @@
         "lint": "eslint . --ext .ts,.js,.yml,.yaml",
         "lint:fix": "eslint . --ext .ts,.js,.yml,.yaml --fix",
         "prepare": "husky install",
-        "prepublish": "rimraf lib && tsc && tsc -p tsconfig.cjs.json",
         "semantic-release": "semantic-release",
         "test": "jest",
         "test:coverage": "jest --coverage",
