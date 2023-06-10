@@ -10,7 +10,7 @@ export type Answers = {
     package: { name: string; description: string; author: string; keywords: string };
     githubPath: string;
     packageKeywordsBedBreakfast: boolean;
-    codeClimate: boolean;
+    codeClimateId: string;
     initialCommit: boolean;
 };
 
@@ -53,7 +53,7 @@ export const writeReadme = (answers: Answers) => {
 [![NPM Version](https://img.shields.io/npm/v/${answers.package.name})](https://www.npmjs.com/package/${answers.package.name})
 [![CI](https://github.com/${answers.githubPath}/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/${answers.githubPath}/actions/workflows/ci.yml)
 [![Release](https://github.com/${answers.githubPath}/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/${answers.githubPath}/actions/workflows/release.yml)
-${answers.codeClimate ? `[![Code Climate](https://codeclimate.com/github/${answers.githubPath}/badges/gpa.svg)](https://codeclimate.com/github/${answers.githubPath})
+${answers.codeClimateId ? `[![Code Climate](https://codeclimate.com/github/${answers.githubPath}/badges/gpa.svg)](https://codeclimate.com/github/${answers.githubPath})
 [![Code Coverage](https://codeclimate.com/github/${answers.githubPath}/badges/coverage.svg)](https://codeclimate.com/github/${answers.githubPath})` : ''}
 [![Known Vulnerabilities](https://snyk.io/test/github/${answers.githubPath}/badge.svg?targetFile=package.json)](https://snyk.io/test/github/${answers.githubPath}?targetFile=package.json)`)
 };
@@ -66,20 +66,22 @@ export const removeChangelog = () => {
     }
 };
 
-export const doInitialCommit = () => {
-    spawnSync('git', ['add', 'package.json']);
+export const initialCommit = (answers: Answers) => {
+    if (answers.initialCommit) {
+        spawnSync('git', ['add', 'package.json']);
 
-    spawnSync('git', ['add', 'README.md']);
+        spawnSync('git', ['add', 'README.md']);
 
-    spawnSync('git', ['add', 'CHANGELOG.md']);
+        spawnSync('git', ['add', 'CHANGELOG.md']);
 
-    const spawn = spawnSync('git', ['commit', '-am', '"feat: create initial commit"'], { shell: true });
+        const spawn = spawnSync('git', ['commit', '-am', '"feat: create initial commit"'], { shell: true });
 
-    if (spawn.stderr) {
-        // eslint-disable-next-line no-console
-        console.error(chalk.red(Error(spawn.stderr.toString()).toString()));
+        if (spawn.stderr) {
+            // eslint-disable-next-line no-console
+            console.error(chalk.red(Error(spawn.stderr.toString()).toString()));
 
-        process.exitCode = 1;
+            process.exitCode = 1;
+        }
     }
 };
 
@@ -89,7 +91,7 @@ export const questionUser = () =>
             type: 'input',
             name: 'package.name',
             message: "What is the package name (i.e. '@bed-and-breakfast/package')",
-            validate: (input) => {
+            validate: (input: string) => {
                 const valid = validate(input).validForNewPackages;
 
                 if (!valid) {
@@ -103,7 +105,7 @@ export const questionUser = () =>
             type: 'input',
             name: 'package.description',
             message: "What is the package description (i.e. 'Bed & Breakfast Package')",
-            validate: (input) => {
+            validate: (input: string) => {
                 const valid = input.length >= 5;
 
                 if (!valid) {
@@ -118,7 +120,7 @@ export const questionUser = () =>
             name: 'package.author',
             message: "What is the package author (i.e. 'Bed & Breakfast')",
             default: 'Bed & Breakfast',
-            validate: (input) => {
+            validate: (input: string) => {
                 const valid = input.length >= 1;
 
                 if (!valid) {
@@ -138,7 +140,7 @@ export const questionUser = () =>
             type: 'input',
             name: 'package.keywords',
             message: "Would you like to add other keywords (i.e. 'npm,package,...')",
-            validate: (input) => {
+            validate: (input: string) => {
                 let valid = false;
 
                 const keywords = input.split(',');
@@ -166,7 +168,7 @@ export const questionUser = () =>
                     : answers.package.name.indexOf('@') === 0
                     ? answers.package.name.substring(1)
                     : answers.package.name,
-            validate: (input) => {
+            validate: (input: string) => {
                 const valid = input.length >= 1 && input.indexOf('/') > 0;
 
                 if (!valid) {
@@ -177,10 +179,20 @@ export const questionUser = () =>
             },
         },
         {
-            type: 'confirm',
-            name: 'codeClimate',
-            message: 'Would you like to use Code Climate',
-            default: true,
+            type: 'input',
+            name: 'codeClimateId',
+            message: 'If you would like to use Code Climate please provide a repo ID',
+            validate: (input: string) => {
+                const valid = input.length === 0 || (input.length === 64 && input.match(/^[a-z0-9]+$/)?.length === 1);
+
+                if (!valid) {
+                    invalid(
+                        'Invalid Code Climate repo ID\nhttps://codeclimate.com/github/repos/new > Add repo > https://codeclimate.com/repos/6483bb2044ebef4ee54144db/settings/test_reporter > TEST REPORTER ID'
+                    );
+                }
+
+                return valid;
+            },
         },
         {
             type: 'confirm',
@@ -190,22 +202,28 @@ export const questionUser = () =>
         },
     ]);
 
-export const replaceCodeClimateId = () => {
-    const ciWorkflow = load(readFileSync('.github/workflows/ci.yml').toString()) as {
-        jobs: { test: { steps: { uses: string; env: { CC_TEST_REPORTER_ID: string } }[] } };
-    };
+export const replaceCodeClimateId = (answers: Answers) => {
+    if (
+        answers.codeClimateId &&
+        answers.codeClimateId.length === 64 &&
+        answers.codeClimateId.match(/^[a-z0-9]+$/)?.length === 1
+    ) {
+        const ciWorkflow = load(readFileSync('.github/workflows/ci.yml').toString()) as {
+            jobs: { test: { steps: { uses: string; env: { CC_TEST_REPORTER_ID: string } }[] } };
+        };
 
-    const codeClimateStep = ciWorkflow.jobs.test.steps.find(
-        (step) => step.uses && step.uses.indexOf('paambaati/codeclimate-action') === 0
-    );
+        const codeClimateStep = ciWorkflow.jobs.test.steps.find(
+            (step) => step.uses && step.uses.indexOf('paambaati/codeclimate-action') === 0
+        );
 
-    if (codeClimateStep) {
-        codeClimateStep.env.CC_TEST_REPORTER_ID = 'TESTY';
+        if (codeClimateStep) {
+            codeClimateStep.env.CC_TEST_REPORTER_ID = answers.codeClimateId;
+        }
+
+        writeFileSync('.github/workflows/ci.yml', dump(ciWorkflow));
+
+        spawnSync('prettier', ['.github/workflows/ci.yml', '--write']);
     }
-
-    writeFileSync('.github/workflows/ci.yml', dump(ciWorkflow));
-
-    spawnSync('eslint', ['.github/workflows/ci.yml', '--fix']);
 };
 
 export const initRepository = () => {
@@ -215,11 +233,8 @@ export const initRepository = () => {
 
         writePackageJson(answers);
         writeReadme(answers);
-        replaceCodeClimateId();
+        replaceCodeClimateId(answers);
         removeChangelog();
-
-        if (answers.initialCommit) {
-            doInitialCommit();
-        }
+        initialCommit(answers);
     });
 };
