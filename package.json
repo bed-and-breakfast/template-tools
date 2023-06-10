@@ -110,9 +110,26 @@
             "@semantic-release/commit-analyzer",
             "@semantic-release/release-notes-generator",
             "@semantic-release/changelog",
-            "@semantic-release/npm",
+            [
+                "@semantic-release/npm",
+                {
+                    "pkgRoot": "lib"
+                }
+            ],
             "@semantic-release/github",
-            "@semantic-release/git"
+            [
+                "@semantic-release/git",
+                {
+                    "assets": [
+                        "package.json",
+                        "README.md",
+                        "CHANGELOG.md",
+                        "lib",
+                        "src",
+                        "cli.js"
+                    ]
+                }
+            ]
         ],
         "branches": "main"
     },
