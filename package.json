@@ -128,7 +128,7 @@
     "types": "lib/index.d.ts",
     "dependencies": {
         "chalk": "4.1.2",
-        "inquirer": "8.2.5",
+        "inquirer": "9.2.7",
         "js-yaml": "4.1.0",
         "validate-npm-package-name": "5.0.0"
     },
@@ -138,7 +138,7 @@
         "@semantic-release/changelog": "6.0.3",
         "@semantic-release/exec": "github:semantic-release/exec",
         "@semantic-release/git": "10.0.1",
-        "@types/inquirer": "8.2.6",
+        "@types/inquirer": "9.0.3",
         "@types/jest": "29.5.2",
         "@types/js-yaml": "4.0.5",
         "@types/node": "20.2.5",
