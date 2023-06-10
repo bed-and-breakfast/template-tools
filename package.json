@@ -114,7 +114,7 @@
             "@semantic-release/release-notes-generator",
             "@semantic-release/changelog",
             "@semantic-release/npm",
-            "@semantic-release/githb",
+            "@semantic-release/github",
             "@semantic-release/git"
         ],
         "branches": "main"
