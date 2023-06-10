@@ -36,7 +36,7 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-              run: cd dist && npx semantic-release
+              run: npx semantic-release
     no-release:
         if: ${{ (github.event_name != 'pull_request') && (github.event.workflow_run.conclusion == 'failure') }}
         name: No Release
