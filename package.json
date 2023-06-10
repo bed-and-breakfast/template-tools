@@ -44,7 +44,7 @@
         "format:package": "format-package -w",
         "lint": "eslint . --ext .ts,.js,.yml,.yaml",
         "lint:fix": "eslint . --ext .ts,.js,.yml,.yaml --fix",
-        "postpublish": "rimraf lib",
+        "prepare": "husky install",
         "semantic-release": "semantic-release",
         "test": "jest",
         "test:coverage": "jest --coverage",
