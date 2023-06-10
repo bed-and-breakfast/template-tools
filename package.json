@@ -16,6 +16,9 @@
         "init",
         "initiation"
     ],
+    "bin": {
+        "template-init": "cli.js"
+    },
     "main": "lib/cjs/index.js",
     "module": "lib/esm/index.js",
     "files": [
@@ -36,7 +39,6 @@
         "format": "prettier \"**/*.+(js|ts|json|yml|yaml)\" --check",
         "format:fix": "prettier \"**/*.+(js|ts|json|yml|yaml)\" --write",
         "format:package": "format-package -w",
-        "init": "node lib/cjs/init/index.js",
         "lint": "eslint . --ext .ts,.js,.yml,.yaml",
         "lint:fix": "eslint . --ext .ts,.js,.yml,.yaml --fix",
         "prepare": "husky install",
@@ -124,7 +126,6 @@
         "@types/jest": "29.5.2",
         "@types/js-yaml": "4.0.5",
         "@types/node": "20.2.5",
-        "@types/sinon": "10.0.15",
         "@types/validate-npm-package-name": "4.0.0",
         "@typescript-eslint/eslint-plugin": "5.59.9",
         "@typescript-eslint/parser": "5.59.9",
@@ -148,7 +149,6 @@
         "rimraf": "5.0.1",
         "semantic-release": "21.0.5",
         "semantic-release-conventional-commits": "3.0.0",
-        "sinon": "15.1.0",
         "ts-jest": "29.1.0",
         "typescript": "5.0.4",
         "validate-npm-package-name": "5.0.0"
