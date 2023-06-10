@@ -7,7 +7,7 @@ import validate from 'validate-npm-package-name';
 import { dump, load } from 'js-yaml';
 
 export type Answers = {
-    package: { name: string; description: string; author: string; keywords: string };
+    package: { name: string; description: string; author: string; keywords: string[] };
     githubPath: string;
     packageKeywordsBedBreakfast: boolean;
     codeClimateId: string;
@@ -26,7 +26,7 @@ export const processAnswers = (answers: Answers) => ({
         keywords: [
             ...(answers.packageKeywordsBedBreakfast ? ['bed', 'breakfast'] : []),
             ...(answers.package.keywords.length > 0
-                ? answers.package.keywords.split(',').map((keyword) => keyword.trim())
+                ? (answers.package.keywords as string).split(',').map((keyword) => keyword.trim())
                 : []),
         ],
     },
@@ -233,8 +233,6 @@ export const initRepository = () => {
     questionUser().then((answers) => {
         // eslint-disable-next-line no-param-reassign
         answers = processAnswers(answers);
-
-        console.log(answers);
 
         writePackageJson(answers);
         writeReadme(answers);

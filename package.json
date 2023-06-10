@@ -1,20 +1,21 @@
 {
-    "name": "tests",
-    "version": "0.0.0",
-    "description": "tests",
+    "name": "@bed-and-breakfast/templates-open-source",
+    "version": "4.1.2",
+    "description": "Bed & Breakfast Open Source Template",
     "private": false,
     "repository": {
-        "url": "https://github.com/t/t.git"
+        "type": "git",
+        "url": "https://github.com/bed-and-breakfast/templates-open-source.git"
     },
-    "bugs": "https://github.com/t/t/issues",
-    "homepage": "https://github.com/t/t",
+    "bugs": "https://github.com/bed-and-breakfast/templates-open-source/issues",
+    "homepage": "https://github.com/bed-and-breakfast/templates-open-source",
     "author": "Bed & Breakfast",
     "keywords": [
         "bed",
         "breakfast",
-        "tempalte",
-        "init",
-        "initiaiton"
+        "package",
+        "template",
+        "open source"
     ],
     "main": "lib/cjs/index.js",
     "module": "lib/esm/index.js",
