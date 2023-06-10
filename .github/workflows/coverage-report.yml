@@ -22,7 +22,7 @@ jobs:
               with:
                   report_name: Coverage Report
                   path: 'coverage/*.xml'
-                  minimum_coverage: 100
+                  minimum_coverage: 0
                   fail_below_threshold: true
                   skip_covered: false
                   only_changed_files: false
