@@ -7,7 +7,7 @@ import validate from 'validate-npm-package-name';
 import { dump, load } from 'js-yaml';
 
 export type Answers = {
-    package: { name: string; description: string; author: string; keywords: string[] };
+    package: { name: string; description: string; author: string; keywords: string | string[] };
     githubPath: string;
     packageKeywordsBedBreakfast: boolean;
     codeClimateId: string;
