@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/bed-and-breakfast/template-init/compare/v1.0.0...v1.0.1) (2023-06-10)
+
+
+### Bug Fixes
+
+* set minimum coverage to 0 ([573beb6](https://github.com/bed-and-breakfast/template-init/commit/573beb6f8bafff095ba3accaa9c101eecf40de11))
+
 # 1.0.0 (2023-06-10)
 
 
