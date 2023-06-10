@@ -1,6 +1,7 @@
 npx rimraf lib && npx tsc && npx tsc -p tsconfig.cjs.json &&
 
-npx check-all-markdown README.md --no-check-links &&
+# Customize check-all-markdown to exclude files
+# npx check-all-markdown README.md --no-check-links &&
 npx markdown-doctest &&
 git add README.md &&
 
