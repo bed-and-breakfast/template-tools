@@ -1,3 +1,5 @@
+## [1.1.12](https://github.com/bed-and-breakfast/template-init/compare/v1.1.11...v1.1.12) (2023-06-10)
+
 ## [1.1.11](https://github.com/bed-and-breakfast/template-init/compare/v1.1.10...v1.1.11) (2023-06-10)
 
 ## [1.1.10](https://github.com/bed-and-breakfast/template-init/compare/v1.1.9...v1.1.10) (2023-06-10)
