@@ -52,7 +52,7 @@ export const writePackageJson = (answers: Answers) => {
 export const writeReadme = (answers: Answers) => {
     // prettier-ignore
     writeFileSync('README.md', `# ${answers.package.description}
-\n
+    
 [![NPM Version](https://img.shields.io/npm/v/${answers.package.name})](https://www.npmjs.com/package/${answers.package.name})
 [![CI](https://github.com/${answers.githubPath}/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/${answers.githubPath}/actions/workflows/ci.yml)
 [![Release](https://github.com/${answers.githubPath}/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/${answers.githubPath}/actions/workflows/release.yml)
@@ -206,27 +206,31 @@ export const questionUser = () =>
     ]);
 
 export const replaceCodeClimateId = (answers: Answers) => {
-    if (
-        answers.codeClimateId &&
-        answers.codeClimateId.length === 64 &&
-        answers.codeClimateId.match(/^[a-z0-9]+$/)?.length === 1
-    ) {
-        const ciWorkflow = load(readFileSync('.github/workflows/ci.yml').toString()) as {
-            jobs: { test: { steps: { uses: string; env: { CC_TEST_REPORTER_ID: string } }[] } };
-        };
+    const ciWorkflow = load(readFileSync('.github/workflows/ci.yml').toString()) as {
+        jobs: { test: { steps: { uses: string; env: { CC_TEST_REPORTER_ID: string } }[] } };
+    };
 
-        const codeClimateStep = ciWorkflow.jobs.test.steps.find(
-            (step) => step.uses && step.uses.indexOf('paambaati/codeclimate-action') === 0
-        );
+    const codeClimateStep = ciWorkflow.jobs.test.steps.find(
+        (step) => step && step.uses && step.uses.indexOf('paambaati/codeclimate-action') === 0
+    );
 
-        if (codeClimateStep) {
+    if (codeClimateStep) {
+        if (
+            answers.codeClimateId &&
+            answers.codeClimateId.length === 64 &&
+            answers.codeClimateId.match(/^[a-z0-9]+$/)?.length === 1
+        ) {
             codeClimateStep.env.CC_TEST_REPORTER_ID = answers.codeClimateId;
+        } else {
+            ciWorkflow.jobs.test.steps.splice(ciWorkflow.jobs.test.steps.indexOf(codeClimateStep), 1);
+
+            console.log(ciWorkflow.jobs.test.steps);
         }
-
-        writeFileSync('.github/workflows/ci.yml', dump(ciWorkflow));
-
-        spawnSync('prettier', ['.github/workflows/ci.yml', '--write']);
     }
+
+    writeFileSync('.github/workflows/ci.yml', dump(ciWorkflow));
+
+    spawnSync('prettier', ['.github/workflows/ci.yml', '--write']);
 };
 
 export const initRepository = () => {
