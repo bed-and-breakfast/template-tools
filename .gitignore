@@ -17,6 +17,7 @@ assets
 tmp
 
 # Build
+dist
 lib
 
 # Test
