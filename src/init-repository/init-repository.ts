@@ -223,8 +223,6 @@ export const replaceCodeClimateId = (answers: Answers) => {
             codeClimateStep.env.CC_TEST_REPORTER_ID = answers.codeClimateId;
         } else {
             ciWorkflow.jobs.test.steps.splice(ciWorkflow.jobs.test.steps.indexOf(codeClimateStep), 1);
-
-            console.log(ciWorkflow.jobs.test.steps);
         }
     }
 
