@@ -1,3 +1,10 @@
+## [1.1.13](https://github.com/bed-and-breakfast/template-init/compare/v1.1.12...v1.1.13) (2023-06-10)
+
+
+### Bug Fixes
+
+* prepublish ([f9a00b6](https://github.com/bed-and-breakfast/template-init/commit/f9a00b6e43fa1efed2bf875abd3657157d023a8c))
+
 ## [1.1.12](https://github.com/bed-and-breakfast/template-init/compare/v1.1.11...v1.1.12) (2023-06-10)
 
 ## [1.1.11](https://github.com/bed-and-breakfast/template-init/compare/v1.1.10...v1.1.11) (2023-06-10)
