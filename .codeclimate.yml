@@ -1,3 +1,14 @@
+plugins:
+    duplication:
+        enabled: true
+    markdownlint:
+        enabled: true
+    shellcheck:
+        enabled: true
+    semgrep:
+        enabled: true
+    git.legal:
+        enabled: true
 exclude_patterns:
     - config/
     - db/
