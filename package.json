@@ -44,7 +44,9 @@
         "format:package": "format-package -w",
         "lint": "eslint . --ext .ts,.js,.yml,.yaml",
         "lint:fix": "eslint . --ext .ts,.js,.yml,.yaml --fix",
+        "postpublish": "rimraf lib",
         "prepare": "husky install",
+        "prepublish": "rimraf lib && tsc && tsc -p tsconfig.cjs.json",
         "semantic-release": "semantic-release",
         "test": "jest",
         "test:coverage": "jest --coverage",
@@ -114,12 +116,6 @@
             "@semantic-release/release-notes-generator",
             "@semantic-release/changelog",
             "@semantic-release/npm",
-            [
-                "@semantic-release/exec",
-                {
-                    "prepareCmd": "rm -r lib"
-                }
-            ],
             "@semantic-release/github",
             "@semantic-release/git"
         ],
@@ -136,7 +132,6 @@
         "@commitlint/cli": "17.6.5",
         "@commitlint/config-conventional": "17.6.5",
         "@semantic-release/changelog": "6.0.3",
-        "@semantic-release/exec": "github:semantic-release/exec",
         "@semantic-release/git": "10.0.1",
         "@types/inquirer": "8.2.6",
         "@types/jest": "29.5.2",
