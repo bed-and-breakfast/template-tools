@@ -1,92 +1,92 @@
 name: CI
 'on':
-  push: null
-  pull_request: null
+    push: null
+    pull_request: null
 jobs:
-  commit-check:
-    name: Check Conventional Commit
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Check Conventional Commit
-        uses: webiny/action-conventional-commits@v1.1.0
-  markdown-link-check:
-    name: Check Markdown Links
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Check markdown links
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: lts/*
-      - name: Install dependencies
-        run: npm ci --ignore-scripts
-      - name: Build
-        run: npm run build
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: lts/*
-      - name: Install dependencies
-        run: npm ci --ignore-scripts
-      - name: Lint
-        run: npm run lint
-      - name: Format
-        run: npm run format
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    env:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: lts/*
-      - name: Install dependencies
-        run: npm ci --ignore-scripts
-      - name: Test (With Coverage)
-        run: npm run test:coverage
-      - name: Upload test artifacts
-        uses: actions/upload-artifact@v3
-        if: success() || failure()
-        with:
-          name: test-results
-          path: test/junit.xml
-      - name: Upload coverage artifacts
-        uses: actions/upload-artifact@v3
-        if: success() || failure()
-        with:
-          name: test-coverage
-          path: coverage/cobertura-coverage.xml
-      - name: Upload coverage reports to Codeclimate
-        uses: paambaati/codeclimate-action@v4.0.0
+    commit-check:
+        name: Check Conventional Commit
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Check Conventional Commit
+              uses: webiny/action-conventional-commits@v1.1.0
+    markdown-link-check:
+        name: Check Markdown Links
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Check markdown links
+              uses: gaurav-nelson/github-action-markdown-link-check@v1
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: lts/*
+            - name: Install dependencies
+              run: npm ci --ignore-scripts
+            - name: Build
+              run: npm run build
+    lint:
+        name: Lint
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: lts/*
+            - name: Install dependencies
+              run: npm ci --ignore-scripts
+            - name: Lint
+              run: npm run lint
+            - name: Format
+              run: npm run format
+    test:
+        name: Test
+        runs-on: ubuntu-latest
         env:
-          CC_TEST_REPORTER_ID: BUTTIE
-        with:
-          coverageLocations: |
-            coverage/cobertura-coverage.xml:cobertura
+            CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: lts/*
+            - name: Install dependencies
+              run: npm ci --ignore-scripts
+            - name: Test (With Coverage)
+              run: npm run test:coverage
+            - name: Upload test artifacts
+              uses: actions/upload-artifact@v3
+              if: success() || failure()
+              with:
+                  name: test-results
+                  path: test/junit.xml
+            - name: Upload coverage artifacts
+              uses: actions/upload-artifact@v3
+              if: success() || failure()
+              with:
+                  name: test-coverage
+                  path: coverage/cobertura-coverage.xml
+            - name: Upload coverage reports to Codeclimate
+              uses: paambaati/codeclimate-action@v4.0.0
+              env:
+                  CC_TEST_REPORTER_ID: b3ec1d8a9e9854420dda178e88a51229f352c1b3880ead5654916ac0a0f95bfd
+              with:
+                  coverageLocations: |
+                      coverage/cobertura-coverage.xml:cobertura

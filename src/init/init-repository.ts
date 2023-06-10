@@ -21,12 +21,15 @@ const invalid = (message: string) => {
 
 export const processAnswers = (answers: Answers) => ({
     ...answers,
-    keywords: [
-        ...(answers.packageKeywordsBedBreakfast ? ['bed', 'breakfast'] : []),
-        ...(answers.package.keywords.length > 0
-            ? answers.package.keywords.split(',').map((keyword) => keyword.trim())
-            : []),
-    ],
+    package: {
+        ...answers.package,
+        keywords: [
+            ...(answers.packageKeywordsBedBreakfast ? ['bed', 'breakfast'] : []),
+            ...(answers.package.keywords.length > 0
+                ? answers.package.keywords.split(',').map((keyword) => keyword.trim())
+                : []),
+        ],
+    },
 });
 
 export const writePackageJson = (answers: Answers) => {
@@ -181,9 +184,9 @@ export const questionUser = () =>
         {
             type: 'input',
             name: 'codeClimateId',
-            message: 'If you would like to use Code Climate please provide a repo ID',
+            message: "If you would like to use Code Climate please provide a repo ID, otherwise provide 'n'",
             validate: (input: string) => {
-                const valid = input.length === 0 || (input.length === 64 && input.match(/^[a-z0-9]+$/)?.length === 1);
+                const valid = input === 'n' || (input.length === 64 && input.match(/^[a-z0-9]+$/)?.length === 1);
 
                 if (!valid) {
                     invalid(
@@ -230,6 +233,8 @@ export const initRepository = () => {
     questionUser().then((answers) => {
         // eslint-disable-next-line no-param-reassign
         answers = processAnswers(answers);
+
+        console.log(answers);
 
         writePackageJson(answers);
         writeReadme(answers);
