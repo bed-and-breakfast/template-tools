@@ -22,7 +22,6 @@
     "main": "lib/cjs/index.js",
     "module": "lib/esm/index.js",
     "files": [
-        "dist",
         "lib",
         "src"
     ],
