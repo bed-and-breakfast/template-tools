@@ -12,6 +12,7 @@ export type Answers = {
     packageKeywordsBedBreakfast: boolean;
     codeClimateId: string;
     initialCommit: boolean;
+    uninstallPackage: boolean;
 };
 
 const invalid = (message: string) => {
@@ -96,6 +97,12 @@ export const initialCommit = (answers: Answers) => {
     }
 };
 
+export const uninstallInitRepository = (answers: Answers) => {
+    if (answers.uninstallPackage) {
+        spawnSync('npm', ['uninstall', '-D', '@bed-and-breakfast/template-init']);
+    }
+};
+
 export const questionUser = () =>
     inquirer.prompt<Answers>([
         {
@@ -152,11 +159,9 @@ export const questionUser = () =>
             name: 'package.keywords',
             message: "Would you like to add other keywords (i.e. 'npm,package,...')",
             validate: (input: string) => {
-                let valid = false;
-
                 const keywords = input.split(',');
 
-                valid =
+                const valid =
                     input.length === 0 ||
                     (input.length >= 3 &&
                         keywords.length === keywords.filter((keyword: string) => keyword.length > 0).length);
@@ -208,7 +213,13 @@ export const questionUser = () =>
         {
             type: 'confirm',
             name: 'initialCommit',
-            message: 'Would you like to automatically do an initial commit',
+            message: 'Would you like to automatically do an initial commit?',
+            default: true,
+        },
+        {
+            type: 'confirm',
+            name: 'uninstallPackage',
+            message: 'Would you like to uninstall the template initiation package?',
             default: true,
         },
     ]);
@@ -241,13 +252,13 @@ export const replaceCodeClimateId = (answers: Answers) => {
 
 export const initRepository = () => {
     questionUser().then((answers) => {
-        // eslint-disable-next-line no-param-reassign
-        answers = processAnswers(answers);
+        const processedAnswers = processAnswers(answers);
 
-        writePackageJson(answers);
-        writeReadme(answers);
-        replaceCodeClimateId(answers);
+        writePackageJson(processedAnswers);
+        writeReadme(processedAnswers);
+        replaceCodeClimateId(processedAnswers);
         removeChangelog();
-        initialCommit(answers);
+        uninstallInitRepository(processedAnswers);
+        initialCommit(processedAnswers);
     });
 };
