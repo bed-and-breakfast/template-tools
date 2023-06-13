@@ -13,8 +13,8 @@ jobs:
             - name: Create test report
               uses: dorny/test-reporter@v1
               with:
-                  artifact: test-results
-                  name: Test Report
+                  artifact: /test-results-(.*)/
+                  name: Test Report $1
                   path: '*.xml'
                   fail-on-error: false
                   reporter: jest-junit

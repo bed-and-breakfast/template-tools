@@ -14,7 +14,7 @@ jobs:
               uses: dawidd6/action-download-artifact@v2
               with:
                   workflow: ci.yml
-                  name: test-coverage
+                  name: test-coverage-lts
                   path: coverage
                   run_id: ${{ github.event.workflow_run.id }}
             - name: Create coverage report
@@ -22,7 +22,7 @@ jobs:
               with:
                   report_name: Coverage Report
                   path: 'coverage/*.xml'
-                  minimum_coverage: 0
+                  minimum_coverage: 100
                   fail_below_threshold: true
                   skip_covered: false
                   only_changed_files: false

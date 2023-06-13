@@ -1,0 +1,23 @@
+name: CI Node Setup
+description: 'Sets up the node environment for jobs during CI workflow'
+
+inputs:
+    node-version:
+        description: 'The Node version to be setup'
+        required: true
+    node-version-file:
+        description: 'The file which contains the Node version to be setup'
+        required: false
+
+runs:
+    using: composite
+    steps:
+        - name: Setup Node
+          uses: actions/setup-node@v3
+          with:
+              node-version: ${{ inputs.node-version }}
+              node-version-file: ${{ inputs.node-version-file }}
+              cache: npm
+        - name: Install Dependencies
+          shell: bash
+          run: npm ci --ignore-scripts
