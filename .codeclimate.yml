@@ -5,8 +5,8 @@ plugins:
         enabled: true
     shellcheck:
         enabled: true
-    semgrep:
-        enabled: true
+    #    semgrep:
+    #        enabled: true
     git.legal:
         enabled: true
 exclude_patterns:
