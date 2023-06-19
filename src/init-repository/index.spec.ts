@@ -1,5 +1,5 @@
 import { existsSync, rmSync } from 'fs';
-import { removeChangelog } from './init-repository';
+import { removeChangelog } from './index';
 import mocked = jest.mocked;
 
 jest.mock('fs');

@@ -2,6 +2,6 @@
 
 /* eslint-disable */
 
-const lib = require('./lib/cjs/index');
+const lib = require('../lib/cjs/index');
 
 lib.initRepository();

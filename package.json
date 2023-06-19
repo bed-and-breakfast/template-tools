@@ -20,7 +20,9 @@
         "initiation"
     ],
     "bin": {
-        "template-init": "cli.js"
+        "template-init": "cli/init-repository.js",
+        "template-add-remote": "cli/template-add-remote.js",
+        "template-pull": "cli/template-pull.js"
     },
     "main": "lib/cjs/index.js",
     "module": "lib/esm/index.js",
@@ -29,7 +31,7 @@
         "README.md",
         "CHANGELOG.md",
         "lib",
-        "cli.js"
+        "init-repository.js"
     ],
     "config": {
         "commitizen": {
