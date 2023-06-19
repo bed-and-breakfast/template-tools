@@ -1,9 +1,9 @@
-[![NPM Version](https://img.shields.io/npm/v/@bed-and-breakfast/template-open-source)](https://www.npmjs.com/package/@bed-and-breakfast/template-open-source)
-[![CI](https://github.com/bed-and-breakfast/template-open-source/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bed-and-breakfast/template-open-source/actions/workflows/ci.yml)
-[![Release](https://github.com/bed-and-breakfast/template-open-source/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/bed-and-breakfast/template-open-source/actions/workflows/release.yml)
-[![Code Climate](https://codeclimate.com/github/bed-and-breakfast/template-open-source/badges/gpa.svg)](https://codeclimate.com/github/bed-and-breakfast/template-open-source)
-[![Code Coverage](https://codeclimate.com/github/bed-and-breakfast/template-open-source/badges/coverage.svg)](https://codeclimate.com/github/bed-and-breakfast/template-open-source)
-[![Known Vulnerabilities](https://snyk.io/test/github/bed-and-breakfast/template-open-source/badge.svg?targetFile=package.json)](https://snyk.io/test/github/bed-and-breakfast/template-open-source?targetFile=package.json)
+[![NPM Version](https://img.shields.io/npm/v/@bed-and-breakfast/templates-open-source)](https://www.npmjs.com/package/@bed-and-breakfast/templates-open-source)
+[![CI](https://github.com/bed-and-breakfast/templates-open-source/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bed-and-breakfast/templates-open-source/actions/workflows/ci.yml)
+[![Release](https://github.com/bed-and-breakfast/templates-open-source/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/bed-and-breakfast/templates-open-source/actions/workflows/release.yml)
+[![Code Climate](https://codeclimate.com/github/bed-and-breakfast/templates-open-source/badges/gpa.svg)](https://codeclimate.com/github/bed-and-breakfast/templates-open-source)
+[![Code Coverage](https://codeclimate.com/github/bed-and-breakfast/templates-open-source/badges/coverage.svg)](https://codeclimate.com/github/bed-and-breakfast/templates-open-source)
+[![Known Vulnerabilities](https://snyk.io/test/github/bed-and-breakfast/templates-open-source/badge.svg?targetFile=package.json)](https://snyk.io/test/github/bed-and-breakfast/templates-open-source?targetFile=package.json)
 
 # Bed & Breakfast Template Tools
 

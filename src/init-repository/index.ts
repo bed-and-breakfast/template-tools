@@ -98,7 +98,7 @@ export const initialCommit = (answers: Answers) => {
     }
 };
 
-export const uninstallInitRepository = (answers: Answers) => {
+export const uninstallPackage = (answers: Answers) => {
     if (answers.uninstallPackage) {
         spawnSync('npm', ['uninstall', '-D', '@bed-and-breakfast/template-tools']);
     }
@@ -217,12 +217,12 @@ export const questionUser = () =>
             message: 'Would you like to automatically do an initial commit?',
             default: true,
         },
-        {
-            type: 'confirm',
-            name: 'uninstallPackage',
-            message: 'Would you like to uninstall the template initiation package?',
-            default: true,
-        },
+        // {
+        //     type: 'confirm',
+        //     name: 'uninstallPackage',
+        //     message: 'Would you like to uninstall the template tools package?',
+        //     default: true,
+        // },
     ]);
 
 export const replaceCodeClimateId = (answers: Answers) => {
@@ -260,7 +260,7 @@ export const initRepository = () => {
         replaceCodeClimateId(processedAnswers);
         removeChangelog();
         templateAddRemote();
-        uninstallInitRepository(processedAnswers);
+        // uninstallPackage(processedAnswers);
         initialCommit(processedAnswers);
     });
 };
