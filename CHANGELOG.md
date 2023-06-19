@@ -1,3 +1,10 @@
+## [2.1.0](https://github.com/bed-and-breakfast/template-init/compare/v2.0.0...v2.1.0) (2023-06-19)
+
+
+### Features
+
+* add template-add-remote and template-pull commands ([34f76f5](https://github.com/bed-and-breakfast/template-init/commit/34f76f583269386f7eff505d5595e6c132ebbe22))
+
 ## [2.0.0](https://github.com/bed-and-breakfast/template-init/compare/v1.1.17...v2.0.0) (2023-06-19)
 
 
