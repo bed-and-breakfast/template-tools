@@ -14,7 +14,7 @@ jobs:
               uses: dorny/test-reporter@v1
               with:
                   artifact: /test-results-(.*)/
-                  name: Test Report $1
+                  name: Test Report (Node $1)
                   path: '*.xml'
                   fail-on-error: false
                   reporter: jest-junit

@@ -56,7 +56,7 @@
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown",
         "*.{ts,js}": "eslint --cache --fix",
-        "*.+(js|ts|json)": "prettier --write"
+        "*.+(js|ts|json|yml|yaml)": "prettier --write"
     },
     "jest": {
         "moduleFileExtensions": [

@@ -53,7 +53,7 @@ jobs:
             - name: Format
               run: npm run format
     test:
-        name: Test
+        name: Test (Node ${{ matrix.version }})
         runs-on: ubuntu-latest
         strategy:
             matrix:
@@ -70,7 +70,7 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v3
-            - name: Setup Node (${{ matrix.node }})
+            - name: Setup Node (${{ matrix.version }})
               uses: './.github/actions/ci-node-setup'
               with:
                   node-version: ${{ matrix.version }}
@@ -91,7 +91,7 @@ jobs:
                   name: test-coverage-${{ matrix.name }}
                   path: coverage/cobertura-coverage.xml
 
-            - name: Upload coverage reports to Codeclimate
+            - name: Upload coverage reports to Code Climate
               uses: paambaati/codeclimate-action@v4.0.0
               if: ${{ matrix.name == 'lts' }}
               env:
