@@ -11,7 +11,7 @@ Tools to aid in the management of repositories based on @bed-and-breakfast/templ
 
 # Installation
 
-After creating a new repository from [@bed-and-breakfast/template-open-source](https://github.com/bed-and-breakfast/templates-open-source), it can be initiated with the following command:
+After creating a new repository from [@bed-and-breakfast/templates-open-source](https://github.com/bed-and-breakfast/templates-open-source), it can be initiated with the following command:
 
 ```sh
 npm i -D @bed-and-breakfast/template-tools
@@ -23,7 +23,7 @@ Template tools are available in the form of the following CLI commands
 
 ## template-init
 
-After a repository has been created from the [@bed-and-breakfast/template-open-source](https://github.com/bed-and-breakfast/templates-open-source) template it needs to be initialized. Run the following command to do this and follow the instructions on the screen.
+After a repository has been created from the [@bed-and-breakfast/templates-open-source](https://github.com/bed-and-breakfast/templates-open-source) template it needs to be initialized. Run the following command to do this and follow the instructions on the screen.
 
 ```sh
 npx template-init
@@ -34,7 +34,7 @@ npx template-init
 
 ## template-add-remote
 
-Adds a read-only remote to the [@bed-and-breakfast/template-open-source](https://github.com/bed-and-breakfast/templates-open-source) template from which we can pull the latest changes.
+Adds a read-only remote to the [@bed-and-breakfast/templates-open-source](https://github.com/bed-and-breakfast/templates-open-source) template from which we can pull the latest changes.
 
 ```sh
 npx template-add-remote
