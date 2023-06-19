@@ -1,3 +1,22 @@
+## [2.1.1](https://github.com/bed-and-breakfast/template-tools/compare/v2.1.0...v2.1.1) (2023-06-19)
+
+
+### Bug Fixes
+
+* do not remove tools package on init ([6bf710c](https://github.com/bed-and-breakfast/template-tools/commit/6bf710c7376ed15659f60d39778f4c8901ee529b))
+* do not remove tools package on init ([19b3788](https://github.com/bed-and-breakfast/template-tools/commit/19b378891c2f4a681683889eddcba8cff45c9d4d))
+
+
+### Chores
+
+* changed package name to @bedandbreakfast/template-tools ([4f18a03](https://github.com/bed-and-breakfast/template-tools/commit/4f18a03b31713bc80bf84cd2925b3377e8c657ed))
+
+
+### Docs
+
+* temporarily change badge urls ([bc0c9bc](https://github.com/bed-and-breakfast/template-tools/commit/bc0c9bc5db4273a97f8424338875b1130ec42ae1))
+* update docs ([76ea5a0](https://github.com/bed-and-breakfast/template-tools/commit/76ea5a061af97c209d58053b0fce03dd12d537a1))
+
 ## [2.1.0](https://github.com/bed-and-breakfast/template-tools/compare/v2.0.0...v2.1.0) (2023-06-19)
 
 ### Features
