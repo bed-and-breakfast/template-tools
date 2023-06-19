@@ -1,64 +1,22 @@
-## [1.1.17](https://github.com/bed-and-breakfast/template-init/compare/v1.1.16...v1.1.17) (2023-06-13)
+## [4.2.6](https://github.com/bed-and-breakfast/templates-open-source/compare/v4.2.5...v4.2.6) (2023-06-13)
 
-## [1.1.16](https://github.com/bed-and-breakfast/template-init/compare/v1.1.15...v1.1.16) (2023-06-13)
-
-## [1.1.15](https://github.com/bed-and-breakfast/template-init/compare/v1.1.14...v1.1.15) (2023-06-10)
-
-## [1.1.14](https://github.com/bed-and-breakfast/template-init/compare/v1.1.13...v1.1.14) (2023-06-10)
-
-## [1.1.13](https://github.com/bed-and-breakfast/template-init/compare/v1.1.12...v1.1.13) (2023-06-10)
-
+## [4.2.5](https://github.com/bed-and-breakfast/templates-open-source/compare/v4.2.4...v4.2.5) (2023-06-13)
 
 ### Bug Fixes
 
-* prepublish ([f9a00b6](https://github.com/bed-and-breakfast/template-init/commit/f9a00b6e43fa1efed2bf875abd3657157d023a8c))
+-   links ([1f42840](https://github.com/bed-and-breakfast/templates-open-source/commit/1f42840ae44e958dc9c73f8c609be65b23c72890))
 
-## [1.1.12](https://github.com/bed-and-breakfast/template-init/compare/v1.1.11...v1.1.12) (2023-06-10)
+## [4.2.4](https://github.com/bed-and-breakfast/templates-open-source/compare/v4.2.3...v4.2.4) (2023-06-13)
 
-## [1.1.11](https://github.com/bed-and-breakfast/template-init/compare/v1.1.10...v1.1.11) (2023-06-10)
+## [4.2.3](https://github.com/bed-and-breakfast/templates-open-source/compare/v4.2.2...v4.2.3) (2023-06-13)
 
-## [1.1.10](https://github.com/bed-and-breakfast/template-init/compare/v1.1.9...v1.1.10) (2023-06-10)
+## [4.2.2](https://github.com/bed-and-breakfast/templates-open-source/compare/v4.2.1...v4.2.2) (2023-06-13)
 
-## [1.1.9](https://github.com/bed-and-breakfast/template-init/compare/v1.1.8...v1.1.9) (2023-06-10)
+## [4.2.1](https://github.com/bed-and-breakfast/templates-open-source/compare/v4.2.0...v4.2.1) (2023-06-10)
 
-## [1.1.8](https://github.com/bed-and-breakfast/template-init/compare/v1.1.7...v1.1.8) (2023-06-10)
-
-## [1.1.7](https://github.com/bed-and-breakfast/template-init/compare/v1.1.6...v1.1.7) (2023-06-10)
-
-## [1.1.6](https://github.com/bed-and-breakfast/template-init/compare/v1.1.5...v1.1.6) (2023-06-10)
-
-## [1.1.3](https://github.com/bed-and-breakfast/template-init/compare/v1.1.2...v1.1.3) (2023-06-10)
-
-## [1.1.2](https://github.com/bed-and-breakfast/template-init/compare/v1.1.1...v1.1.2) (2023-06-10)
-
-## [1.1.1](https://github.com/bed-and-breakfast/template-init/compare/v1.1.0...v1.1.1) (2023-06-10)
-
-# [1.1.0](https://github.com/bed-and-breakfast/template-init/compare/v1.0.2...v1.1.0) (2023-06-10)
-
-
-### Bug Fixes
-
-* linter ([209e9eb](https://github.com/bed-and-breakfast/template-init/commit/209e9eb4c7724a7b62d39e70f5b78f2d0db24010))
-* reset package ([df3b08f](https://github.com/bed-and-breakfast/template-init/commit/df3b08ff8e36507cd7344c3a51d0d4b7ea626b4a))
-
+# [4.2.0](https://github.com/bed-and-breakfast/templates-open-source/compare/v4.1.2...v4.2.0) (2023-06-10)
 
 ### Features
 
-* add cli command ([92bb978](https://github.com/bed-and-breakfast/template-init/commit/92bb978d6746a596167aa904f4df0a9ff3e4baf3))
-
-## [1.0.2](https://github.com/bed-and-breakfast/template-init/compare/v1.0.1...v1.0.2) (2023-06-10)
-
-## [1.0.1](https://github.com/bed-and-breakfast/template-init/compare/v1.0.0...v1.0.1) (2023-06-10)
-
-
-### Bug Fixes
-
-* set minimum coverage to 0 ([573beb6](https://github.com/bed-and-breakfast/template-init/commit/573beb6f8bafff095ba3accaa9c101eecf40de11))
-
-# 1.0.0 (2023-06-10)
-
-
-### Features
-
-* create initial commit ([8f95f97](https://github.com/bed-and-breakfast/template-init/commit/8f95f977f4c2e54c8d8a79110e20bbd8e6d21449))
-* initial commit ([cbc1d85](https://github.com/bed-and-breakfast/template-init/commit/cbc1d85b09e21b6f89b5c6ff1617a7e3a9936e36))
+-   failed release ([6eae1d2](https://github.com/bed-and-breakfast/templates-open-source/commit/6eae1d20882be0ad6590aeaf5659fedc9148b97e))
+-   remove codecov integration ([d723e3a](https://github.com/bed-and-breakfast/templates-open-source/commit/d723e3abbf570f7eed6287690ab60df5cb0f6dac))
