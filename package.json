@@ -1,5 +1,5 @@
 {
-    "name": "@bed-and-breakfast/template-init",
+    "name": "@bed-and-breakfast/template-tools",
     "version": "2.1.0",
     "description": "Bed & Breakfast Template Initiation Script",
     "private": false,
@@ -7,10 +7,10 @@
         "node": ">=18.0.0"
     },
     "repository": {
-        "url": "https://github.com/bed-and-breakfast/template-init.git"
+        "url": "https://github.com/bed-and-breakfast/template-tools.git"
     },
-    "bugs": "https://github.com/bed-and-breakfast/template-init/issues",
-    "homepage": "https://github.com/bed-and-breakfast/template-init",
+    "bugs": "https://github.com/bed-and-breakfast/template-tools/issues",
+    "homepage": "https://github.com/bed-and-breakfast/template-tools",
     "author": "Bed & Breakfast",
     "keywords": [
         "bed",

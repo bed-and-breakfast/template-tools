@@ -5,6 +5,7 @@ import chalk from 'chalk';
 import inquirer from 'inquirer';
 import validate from 'validate-npm-package-name';
 import { dump, load } from 'js-yaml';
+import { templateAddRemote } from '../template-remote';
 
 export type Answers = {
     package: { name: string; description: string; author: string; keywords: string | string[] };
@@ -99,7 +100,7 @@ export const initialCommit = (answers: Answers) => {
 
 export const uninstallInitRepository = (answers: Answers) => {
     if (answers.uninstallPackage) {
-        spawnSync('npm', ['uninstall', '-D', '@bed-and-breakfast/template-init']);
+        spawnSync('npm', ['uninstall', '-D', '@bed-and-breakfast/template-tools']);
     }
 };
 
@@ -258,6 +259,7 @@ export const initRepository = () => {
         writeReadme(processedAnswers);
         replaceCodeClimateId(processedAnswers);
         removeChangelog();
+        templateAddRemote();
         uninstallInitRepository(processedAnswers);
         initialCommit(processedAnswers);
     });
