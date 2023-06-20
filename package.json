@@ -1,6 +1,6 @@
 {
     "name": "@bed-and-breakfast/template-tools",
-    "version": "2.1.2",
+    "version": "2.1.3",
     "description": "Bed & Breakfast Template Initiation Script",
     "private": false,
     "engines": {
