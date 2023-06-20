@@ -103,15 +103,6 @@ export const removeChangelog = () => {
 };
 
 export const initialCommit = (answers: Answers) => {
-    const logError = (stderr: Buffer) => {
-        if (stderr) {
-            // eslint-disable-next-line no-console
-            console.error(chalk.red(Error(stderr.toString()).toString()));
-
-            process.exitCode = 1;
-        }
-    };
-
     if (answers.initialCommit) {
         spawnSync('git', ['add', 'package.json']);
 
@@ -121,11 +112,24 @@ export const initialCommit = (answers: Answers) => {
 
         const commit = spawnSync('git', ['commit', '-am', '"feat: initialize repository"'], { shell: true });
 
-        logError(commit.stderr);
+        if (commit.stderr) {
+            // eslint-disable-next-line no-console
+            console.error(chalk.red(Error(commit.stderr.toString()).toString()));
+
+            process.exitCode = 1;
+        }
 
         const push = spawnSync('git', ['push']);
 
-        logError(push.stderr);
+        if (push.stdout) {
+            // eslint-disable-next-line no-console
+            console.log(push.stdout.toString());
+        }
+
+        if (push.stderr) {
+            // eslint-disable-next-line no-console
+            console.log(push.stderr.toString());
+        }
     }
 };
 
@@ -316,7 +320,7 @@ export const initRepository = () => {
         questionUser().then((answers) => {
             const processedAnswers = processAnswers(answers);
 
-            setBackupAnswers(answers);
+            setBackupAnswers(processedAnswers);
 
             doInit(processedAnswers);
         });
