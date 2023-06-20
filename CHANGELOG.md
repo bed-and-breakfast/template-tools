@@ -1,3 +1,10 @@
+## [2.2.0](https://github.com/bed-and-breakfast/template-tools/compare/v2.1.3...v2.2.0) (2023-06-20)
+
+
+### Features
+
+* add template-init answer backup ([1c5f691](https://github.com/bed-and-breakfast/template-tools/commit/1c5f691f3a6c1d73fa7ba16ceaf4af3b391c8904))
+
 ## [2.1.3](https://github.com/bed-and-breakfast/template-tools/compare/v2.1.2...v2.1.3) (2023-06-20)
 
 
