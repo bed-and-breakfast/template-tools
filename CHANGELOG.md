@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/bed-and-breakfast/template-tools/compare/v2.2.0...v2.2.1) (2023-06-20)
+
+
+### Bug Fixes
+
+* change initial commit message ([9693bd5](https://github.com/bed-and-breakfast/template-tools/commit/9693bd5e63119b02640674f614daab0de0343e45))
+
 ## [2.2.0](https://github.com/bed-and-breakfast/template-tools/compare/v2.1.3...v2.2.0) (2023-06-20)
 
 
