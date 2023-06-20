@@ -1,3 +1,10 @@
+## [2.2.3](https://github.com/bed-and-breakfast/template-tools/compare/v2.2.2...v2.2.3) (2023-06-20)
+
+
+### Bug Fixes
+
+* set back up answers correctly ([c0c3e64](https://github.com/bed-and-breakfast/template-tools/commit/c0c3e6444c69bc81d57b5ae8a990290488800619))
+
 ## [2.2.2](https://github.com/bed-and-breakfast/template-tools/compare/v2.2.1...v2.2.2) (2023-06-20)
 
 
