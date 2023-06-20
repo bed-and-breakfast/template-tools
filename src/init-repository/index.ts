@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { existsSync, readFileSync, rmSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from 'fs';
 import { spawnSync } from 'child_process';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
@@ -33,6 +33,35 @@ export const processAnswers = (answers: Answers) => ({
         ],
     },
 });
+
+const backupAnswersFile = 'tmp/template-init-answers.json';
+export const getBackupAnswers = (): Answers | false => {
+    if (existsSync(backupAnswersFile)) {
+        return JSON.parse(readFileSync(backupAnswersFile).toString());
+    }
+
+    return false;
+};
+
+export const setBackupAnswers = (answers: Answers) => {
+    const dir = backupAnswersFile.substring(0, backupAnswersFile.lastIndexOf('/'));
+
+    if (!existsSync(dir)) {
+        mkdirSync(dir, { recursive: true });
+    }
+
+    writeFileSync(backupAnswersFile, JSON.stringify(answers));
+};
+
+export const clearBackupAnswers = () => {
+    const dir = backupAnswersFile.substring(0, backupAnswersFile.lastIndexOf('/'));
+
+    rmSync(backupAnswersFile);
+
+    if (readdirSync(dir).length === 0) {
+        rmdirSync(dir);
+    }
+};
 
 export const writePackageJson = (answers: Answers) => {
     let packageJson = JSON.parse(readFileSync('package.json').toString());
@@ -100,11 +129,25 @@ export const initialCommit = (answers: Answers) => {
     }
 };
 
+export const npmInstall = () => {
+    spawnSync('npm', ['install']);
+};
+
 export const uninstallPackage = (answers: Answers) => {
     if (answers.uninstallPackage) {
         spawnSync('npm', ['uninstall', '-D', '@bed-and-breakfast/template-tools']);
     }
 };
+
+export const backupQuestionUser = () =>
+    inquirer.prompt<{ backup: boolean }>([
+        {
+            type: 'confirm',
+            name: 'backup',
+            message: 'Would you like to re-use your previous answers?',
+            default: true,
+        },
+    ]);
 
 export const questionUser = () =>
     inquirer.prompt<Answers>([
@@ -253,16 +296,41 @@ export const replaceCodeClimateId = (answers: Answers) => {
     spawnSync('prettier', ['.github/workflows/ci.yml', '--write']);
 };
 
-export const initRepository = () => {
-    questionUser().then((answers) => {
-        const processedAnswers = processAnswers(answers);
+export const doInit = (answers: Answers) => {
+    npmInstall();
+    writePackageJson(answers);
+    writeReadme(answers);
+    replaceCodeClimateId(answers);
+    removeChangelog();
+    templateAddRemote();
+    // uninstallPackage(processedAnswers);
+    initialCommit(answers);
 
-        writePackageJson(processedAnswers);
-        writeReadme(processedAnswers);
-        replaceCodeClimateId(processedAnswers);
-        removeChangelog();
-        templateAddRemote();
-        // uninstallPackage(processedAnswers);
-        initialCommit(processedAnswers);
-    });
+    clearBackupAnswers();
+};
+
+export const initRepository = () => {
+    const backupAnswers = getBackupAnswers();
+
+    const questionaire = () => {
+        questionUser().then((answers) => {
+            const processedAnswers = processAnswers(answers);
+
+            setBackupAnswers(answers);
+
+            doInit(processedAnswers);
+        });
+    };
+
+    if (backupAnswers) {
+        backupQuestionUser().then(({ backup }) => {
+            if (backup) {
+                doInit(backupAnswers as Answers);
+            } else {
+                questionaire();
+            }
+        });
+    } else {
+        questionaire();
+    }
 };
