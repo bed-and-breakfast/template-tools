@@ -13,7 +13,7 @@ Tools to aid in the management of repositories based on @bed-and-breakfast/templ
 
 # Installation
 
-After creating a new repository from [@bed-and-breakfast/templates-open-source](https://github.com/bed-and-breakfast/templates-open-source), it can be initiated with the following command:
+After creating a new @bed-and-breakfast/template-\*, it can be installed with the following command:
 
 ```sh
 npm i -D @bed-and-breakfast/template-tools
