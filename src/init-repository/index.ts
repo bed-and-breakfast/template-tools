@@ -103,6 +103,15 @@ export const removeChangelog = () => {
 };
 
 export const initialCommit = (answers: Answers) => {
+    const logError = (stderr: Buffer) => {
+        if (stderr) {
+            // eslint-disable-next-line no-console
+            console.error(chalk.red(Error(stderr.toString()).toString()));
+
+            process.exitCode = 1;
+        }
+    };
+
     if (answers.initialCommit) {
         spawnSync('git', ['add', 'package.json']);
 
@@ -110,26 +119,17 @@ export const initialCommit = (answers: Answers) => {
 
         spawnSync('git', ['add', 'CHANGELOG.md']);
 
-        const commit = spawnSync('git', ['commit', '-am', '"feat: initialize repository"'], { shell: true });
+        const commit = spawnSync(
+            'GIT_REDIRECT_STDERR="2>&1"',
+            ['git', 'commit', '-am', '"feat: create initial commit"'],
+            { shell: true }
+        );
 
-        if (commit.stderr) {
-            // eslint-disable-next-line no-console
-            console.error(chalk.red(Error(commit.stderr.toString()).toString()));
+        logError(commit.stderr);
 
-            process.exitCode = 1;
-        }
+        const push = spawnSync('GIT_REDIRECT_STDERR="2>&1"', ['git', 'push']);
 
-        const push = spawnSync('git', ['push']);
-
-        if (push.stdout) {
-            // eslint-disable-next-line no-console
-            console.log(push.stdout.toString());
-        }
-
-        if (push.stderr) {
-            // eslint-disable-next-line no-console
-            console.log(push.stderr.toString());
-        }
+        logError(push.stderr);
     }
 };
 
