@@ -119,7 +119,7 @@ export const initialCommit = (answers: Answers) => {
 
         spawnSync('git', ['add', 'CHANGELOG.md']);
 
-        const commit = spawnSync('git', ['commit', '-am', '"feat: create initial commit"'], { shell: true });
+        const commit = spawnSync('git', ['commit', '-am', '"feat: initialize repository"'], { shell: true });
 
         logError(commit.stderr);
 
