@@ -1,3 +1,10 @@
+## [2.2.7](https://github.com/bed-and-breakfast/template-tools/compare/v2.2.6...v2.2.7) (2023-06-20)
+
+
+### Bug Fixes
+
+* process git err output ([46f8900](https://github.com/bed-and-breakfast/template-tools/commit/46f890002b102f9b3fa261b28347539b53a1371c))
+
 ## [2.2.6](https://github.com/bed-and-breakfast/template-tools/compare/v2.2.5...v2.2.6) (2023-06-20)
 
 
