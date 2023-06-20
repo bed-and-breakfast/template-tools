@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/bed-and-breakfast/template-tools/compare/v2.1.1...v2.1.2) (2023-06-19)
+
+
+### Docs
+
+* fix badges ([c40795c](https://github.com/bed-and-breakfast/template-tools/commit/c40795cc37c0c406ea50be1804675e08484d6ad2))
+
 ## [2.1.1](https://github.com/bed-and-breakfast/template-tools/compare/v2.1.0...v2.1.1) (2023-06-19)
 
 
