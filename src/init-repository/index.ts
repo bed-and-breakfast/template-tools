@@ -113,10 +113,12 @@ export const initialCommit = (answers: Answers) => {
 
         spawnSync('git', ['add', 'README.md']);
 
-        spawnSync('git', ['add', 'CHANGELOG.md']);
+        spawnSync('git', ['rm', 'CHANGELOG.md']);
 
-        const commit = spawnSync('git', ['commit', '-am', '"feat: create initial commit"'], { shell: true });
+        const commit = spawnSync('git', ['commit', '-am', '"feat: initialize repository"'], { shell: true });
 
+        // eslint-disable-next-line no-console
+        console.log('commit', commit.stderr);
         if (commit.status !== 0) {
             logError(commit.stderr);
 
@@ -125,6 +127,8 @@ export const initialCommit = (answers: Answers) => {
 
         const push = spawnSync('git', ['push']);
 
+        // eslint-disable-next-line no-console
+        console.log('push', push.status);
         if (push.status !== 0) {
             logError(push.stderr);
 
