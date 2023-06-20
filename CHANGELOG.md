@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/bed-and-breakfast/template-tools/compare/v2.2.1...v2.2.2) (2023-06-20)
+
+
+### Docs
+
+* update installation instructions ([1c5c0bb](https://github.com/bed-and-breakfast/template-tools/commit/1c5c0bb9e2181311f0ece15d333b910d81b78b3a))
+
 ## [2.2.1](https://github.com/bed-and-breakfast/template-tools/compare/v2.2.0...v2.2.1) (2023-06-20)
 
 
