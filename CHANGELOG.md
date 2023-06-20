@@ -1,3 +1,10 @@
+## [2.1.3](https://github.com/bed-and-breakfast/template-tools/compare/v2.1.2...v2.1.3) (2023-06-20)
+
+
+### Docs
+
+* add extra badges ([1260e81](https://github.com/bed-and-breakfast/template-tools/commit/1260e811dd3e2389a05c973560464ab6fc0041ff))
+
 ## [2.1.2](https://github.com/bed-and-breakfast/template-tools/compare/v2.1.1...v2.1.2) (2023-06-19)
 
 
