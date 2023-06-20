@@ -115,11 +115,7 @@ export const initialCommit = (answers: Answers) => {
 
         spawnSync('git', ['add', 'CHANGELOG.md']);
 
-        const commit = spawnSync(
-            'GIT_REDIRECT_STDERR="2>&1"',
-            ['git', 'commit', '-am', '"feat: create initial commit"'],
-            { shell: true }
-        );
+        const commit = spawnSync('git', ['commit', '-am', '"feat: create initial commit"'], { shell: true });
 
         if (commit.status !== 0) {
             logError(commit.stderr);
@@ -127,7 +123,7 @@ export const initialCommit = (answers: Answers) => {
             return false;
         }
 
-        const push = spawnSync('GIT_REDIRECT_STDERR="2>&1"', ['git', 'push']);
+        const push = spawnSync('git', ['push']);
 
         if (push.status !== 0) {
             logError(push.stderr);
@@ -338,6 +334,9 @@ export const initRepository = () => {
     };
 
     if (backupAnswers) {
+        // eslint-disable-next-line no-console
+        console.log(backupAnswers);
+
         backupQuestionUser().then(({ backup }) => {
             if (backup) {
                 doInit(backupAnswers as Answers);
