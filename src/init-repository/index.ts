@@ -104,12 +104,8 @@ export const removeChangelog = () => {
 
 export const initialCommit = (answers: Answers) => {
     const logError = (stderr: Buffer) => {
-        if (stderr) {
-            // eslint-disable-next-line no-console
-            console.error(chalk.red(Error(stderr.toString()).toString()));
-
-            process.exitCode = 1;
-        }
+        // eslint-disable-next-line no-console
+        console.error(chalk.red(Error(stderr.toString()).toString()));
     };
 
     if (answers.initialCommit) {
@@ -125,12 +121,24 @@ export const initialCommit = (answers: Answers) => {
             { shell: true }
         );
 
-        logError(commit.stderr);
+        if (commit.status !== 0) {
+            logError(commit.stderr);
+
+            return false;
+        }
 
         const push = spawnSync('GIT_REDIRECT_STDERR="2>&1"', ['git', 'push']);
 
-        logError(push.stderr);
+        if (push.status !== 0) {
+            logError(push.stderr);
+
+            return false;
+        }
+
+        return true;
     }
+
+    return true;
 };
 
 export const npmInstall = () => {
@@ -308,9 +316,12 @@ export const doInit = (answers: Answers) => {
     removeChangelog();
     templateAddRemote();
     // uninstallPackage(processedAnswers);
-    initialCommit(answers);
 
-    clearBackupAnswers();
+    if (initialCommit(answers)) {
+        clearBackupAnswers();
+    } else {
+        process.exit(1);
+    }
 };
 
 export const initRepository = () => {
