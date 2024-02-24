@@ -208,7 +208,7 @@
         "@typescript-eslint/eslint-plugin": "5.60.0",
         "@typescript-eslint/parser": "5.60.0",
         "check-all-markdown": "1.4.0",
-        "eslint": "8.43.0",
+        "eslint": "8.57.0",
         "eslint-config-airbnb-typescript": "17.0.0",
         "eslint-config-prettier": "8.8.0",
         "eslint-plugin-yaml": "0.5.0",
