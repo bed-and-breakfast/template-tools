@@ -204,7 +204,7 @@
         "@types/jest": "29.5.2",
         "@types/js-yaml": "4.0.5",
         "@types/node": "20.2.5",
-        "@types/validate-npm-package-name": "4.0.0",
+        "@types/validate-npm-package-name": "4.0.2",
         "@typescript-eslint/eslint-plugin": "5.60.0",
         "@typescript-eslint/parser": "5.60.0",
         "check-all-markdown": "1.4.0",
